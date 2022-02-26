@@ -30,4 +30,23 @@ const nomes = [
     "Felipe",
     "Armando"
 ]
-nomes.filter(() => {})
+    // Arrow function sendo passada como parametro
+const apenasA = nomes.filter((nome) => {
+    return nome.toUpperCase().startsWith('A')
+})
+console.log(apenasA)
+const iniciais = nomes.map((nome) => {
+    return nome.charAt(0)
+})
+console.log(iniciais)
+
+const resultado = nomes.every((nome) => {
+    return nome.startsWith("A")
+})
+console.log(resultado)
+
+const valores = [1, 2, 3, 4]
+const soma = valores.reduce((acumulador, atual) => {
+    return acumulador + atual
+})
+console.log(soma)
