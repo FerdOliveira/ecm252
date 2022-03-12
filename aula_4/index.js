@@ -1,2 +1,8 @@
+require('dotenv').config()
 
-const urlApi = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
+const { APIKEY, PROTOCOL, BASE_URL, LANGUAGE, UNITS } = process.env
+
+
+city = 'Itupeva'
+const urlApi = `${PROTOCOL}://${BASE_URL}?q=${city}&appid=${process.env.APIKEYWEATHER}&lang=${LANGUAGE}&units=${UNITS}`
+console.log(urlApi)
