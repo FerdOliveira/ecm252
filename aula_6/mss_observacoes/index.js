@@ -8,23 +8,25 @@ const observacoesPorLembreteId = {}
 
 // GET
 // localhost:5000/lembretes/{id}/observacoes
-app.get('lembretes/:id/observacoes', (res, req) => {
+app.get('lembretes/:id/observacoes', (req, res) => {
     
 })
 
 // POST
 // localhost:5000/lembretes/{id}/observacoes
-app.post('lembretes/:id/observacoes', (res, req) => {
+
+app.post('/lembretes/:id/observacoes', (req, res) => {
+    
     const idObs = uuidv4()
     //const texto = req.body.texto
     const { texto } = req.body
-    const observacoesDoLembrete = observacoesPorLembreteId[req.params.id] || [] // OU Lógico -> se observacoesPorLembreteId[req.params.id] não existir o valor atribuido será []
+    const observacoesDoLembrete = observacoesPorLembreteId [req.params.id] || []// OU Lógico -> se observacoesPorLembreteId[req.params.id] não existir o valor atribuido será []
     /* 
     const observacoesDoLembrete = observacoesPorLembreteId[req.params.id] 
     if(observacoesDoLembrete === undefined)
-        observacoesDolembrete = []
+        observacoesDoLembrete = []
     */
-    observacoesPorLembrete.push({id: idObs, texto: texto})
+    observacoesDoLembrete.push({id: idObs, texto})
     observacoesPorLembreteId[req.params.id] = observacoesDoLembrete
     res.status(201).send(observacoesDoLembrete)
 })
