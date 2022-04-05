@@ -1,3 +1,4 @@
 Documentação: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
 NPM: https://www.npmjs.com/
+JSON: https://www.json.org/json-en.html
 
