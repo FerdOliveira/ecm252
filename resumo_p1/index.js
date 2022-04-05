@@ -106,7 +106,95 @@ function hello (nome){
 hello()
 hello("F7")
 
+// Arrow Function
+
+const triplo = (numero) => numero * 3
+const dobroMsg = (numero) => {
+    console.log(`O dobro de ${numero} é ${2*numero}.`)
+}
+console.log(triplo(7))
+dobroMsg(1)
+
+// =============================================================
+console.log("\n=============================================================")
+
+// Closures
+console.log("Closures\n")
+
+// Closures é um objeto formado por uma função e seu escopo
+
+// Em paralelo com POO, é como um Closures são como um objeto de um único método
+
+function ola(){
+    let nome = 'João';
+    return function (){
+        console.log ('Olá, João');
+    }
+}
+    
+let olaResult = ola(); // olaResult é uma Closure
+
+olaResult();
+
+function saudacoesFactory(saudacao, nome){
+    return function (){
+    console.log (saudacao + ', ' + nome);
+    }
+}
+
+let olaJoao = saudacoesFactory ('Olá', 'João');      // olaJoao é uma Closure
+let tchauJoao = saudacoesFactory('Tchau', 'João');   // tchauJoao é uma Closure
+olaJoao();
+tchauJoao();
 
 
+// =============================================================
+console.log("\n=============================================================")
+
+// JSON
+console.log("JSON\n")
+
+let pessoa = {
+    nome: "Felipe",
+    idade: 21,
+    endereco: {
+        logradouro: "Rua Tal",
+        numero: 821
+    }
+}
+
+console.log(pessoa.nome)
+console.log(pessoa["nome"])
+console.log(pessoa.endereco.logradouro)
+
+let calculadora = {
+    soma: (a, b) => a + b,
+    subtracao: (a, b) => a - b
+}
+
+console.log(calculadora.soma(2,3))
+
+// =============================================================
+console.log("\n=============================================================")
+
+// Execução Síncrona e Assíncrona
+console.log("Execução Síncrona e Assíncrona\n")
 
 
+// Execução Sícrona ou Bloqueante
+function demorada(){
+    const atualMais2Segundos = new Date().getTime() + 2000
+    while (new Date().getTime() <= atualMais2Segundos);
+    const d = 8 + 4
+    return d
+}
+
+const a = 2 + 3
+const b = 5 + 9
+const d = demorada()
+/*
+o valor de e não depende do valor devolvido
+pela função demorada.
+*/
+const e = 2 + a + b
+console.log(e)
