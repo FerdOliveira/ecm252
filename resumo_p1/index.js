@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 // =============================================================
 console.log("\n=============================================================")
 
@@ -180,21 +182,118 @@ console.log("\n=============================================================")
 // Execução Síncrona e Assíncrona
 console.log("Execução Síncrona e Assíncrona\n")
 
+console.log("Ta tudo comentado pra não cagar o resto do script")
 
-// Execução Sícrona ou Bloqueante
-function demorada(){
-    const atualMais2Segundos = new Date().getTime() + 2000
-    while (new Date().getTime() <= atualMais2Segundos);
-    const d = 8 + 4
-    return d
+// // Execução Sícrona ou Bloqueante
+// function demorada(){
+//     const atualMais2Segundos = new Date().getTime() + 2000
+//     while (new Date().getTime() <= atualMais2Segundos);
+//     const d = 8 + 4
+//     return d
+// }
+
+// const a = 2 + 3
+// const b = 5 + 9
+// const d = demorada()
+// /*
+// o valor de e não depende do valor devolvido
+// pela função demorada.
+// */
+// const e = 2 + a + b
+// console.log(e)
+
+// // Execução Assíncrona ou Não Bloqueante
+
+// /* 
+// A função setTimeout recebe dois parâmetros, uma função e um valor em milissegundos, 
+// a função será executada apenas quando os milissegundos se esgotarem, sendo assim o resto do código continua executando.
+// Basicamente, a setTimeout adia a execução da função passada em X milissegundos. 
+// */
+// setTimeout(() => {
+//     const f = demorada()
+//     console.log("Sou de um setTimeout, me ignora", f)
+// }, 500)
+
+// const g = a + b
+// console.log(g)
+
+// /* 
+// Obs.: a função setTimeout enfileira a execução da função, ou seja, mesmo que
+// os milissegundos se esgotem a função apenas será executada depois do bloco principal.
+// Por exemplo:
+// */
+
+// setTimeout(function(){
+//     console.log('Dentro da setTimeout')
+// },0)
+
+// const h = new Date().getTime() + 1000
+// while (new Date().getTime() <= a);
+// console.log('Fora da setTimeout')
+
+// /*
+// Em JavaScript, a execução é single thread, ou seja, o programador não consegue criar
+// threads separadas, apenas o próprop o próprio ambiente de execução pode (NodeJS, navegador).
+// É o caso da leitura de um arquivo que pode ser executado em uma thread separada pelo ambiente.
+// */
+
+// let abrirArquivo = function (nomeArquivo) {
+//     let exibirConteudo = function (erro, conteudo) {
+//         if (erro) {
+//             console.log(`Deu erro: ${erro}`);
+//         } else {
+//             console.log(conteudo.toString());
+//         }
+//     };
+//     fs.readFile(nomeArquivo, exibirConteudo);
+// };
+
+// abrirArquivo('arquivo.txt')
+// abrirArquivo("../aula_3/arquivo.txt");
+
+// =============================================================
+console.log("\n=============================================================")
+
+// O Inferno de Callbacks
+console.log("O Inferno de Callbacks\n")
+
+// Callbacks: são funções passadas para outras funções como parametro para completar algum tipo de rotina
+// Promises: 
+
+
+const abrirArquivo = function (nomeArquivo) {
+    const exibirConteudo = function (erro, conteudo) {
+        if (erro) {
+            console.log(`Deu erro: ${erro}`);
+        } else {
+            console.log(conteudo.toString());
+            const dobro = +conteudo.toString() * 2;
+            const finalizar = function (erro){
+                if(erro){
+                    console.log('Deu erro tentando salvar o dobro')
+                }
+                else{
+                    console.log("Salvou o dobro com sucesso");
+                }
+            }
+            fs.writeFile('dobro.txt', dobro.toString(), finalizar);
+        }
+    };
+    fs.readFile(nomeArquivo, exibirConteudo);
+ };
+ abrirArquivo("arquivoNumero.txt");
+
+function calculoDemorado(numero){
+    return new Promise(function (resolve, reject){
+        let response = 0
+        for(let i = 1; i <= numero; i++){
+            response += 1
+        }
+        resolve(response)
+    })
 }
 
-const a = 2 + 3
-const b = 5 + 9
-const d = demorada()
-/*
-o valor de e não depende do valor devolvido
-pela função demorada.
-*/
-const e = 2 + a + b
-console.log(e)
+calculoDemorado(10).then( (response) => {
+    console.log("Resposta: ", response)
+})
+
