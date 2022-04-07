@@ -258,30 +258,38 @@ console.log("\n=============================================================")
 console.log("O Inferno de Callbacks\n")
 
 // Callbacks: são funções passadas para outras funções como parametro para completar algum tipo de rotina
-// Promises: 
 
+console.log("Ta tudo comentado pra não cagar o resto do script")
 
-const abrirArquivo = function (nomeArquivo) {
-    const exibirConteudo = function (erro, conteudo) {
-        if (erro) {
-            console.log(`Deu erro: ${erro}`);
-        } else {
-            console.log(conteudo.toString());
-            const dobro = +conteudo.toString() * 2;
-            const finalizar = function (erro){
-                if(erro){
-                    console.log('Deu erro tentando salvar o dobro')
-                }
-                else{
-                    console.log("Salvou o dobro com sucesso");
-                }
-            }
-            fs.writeFile('dobro.txt', dobro.toString(), finalizar);
-        }
-    };
-    fs.readFile(nomeArquivo, exibirConteudo);
- };
- abrirArquivo("arquivoNumero.txt");
+// const abrirArquivo = function (nomeArquivo) {
+//     const exibirConteudo = function (erro, conteudo) {
+//         if (erro) {
+//             console.log(`Deu erro: ${erro}`);
+//         } else {
+//             console.log(conteudo.toString());
+//             const dobro = +conteudo.toString() * 2;
+//             const finalizar = function (erro){
+//                 if(erro){
+//                     console.log('Deu erro tentando salvar o dobro')
+//                 }
+//                 else{
+//                     console.log("Salvou o dobro com sucesso");
+//                 }
+//             }
+//             fs.writeFile('dobro.txt', dobro.toString(), finalizar);
+//         }
+//     };
+//     fs.readFile(nomeArquivo, exibirConteudo);
+//  };
+//  abrirArquivo("arquivoNumero.txt");
+
+// =============================================================
+console.log("\n=============================================================")
+
+// Promises
+console.log("Promises\n")
+
+ // Promises: é um objeto por meio do qual uma função pode propagar um resultado ou um erro em algum momento no futuro
 
 function calculoDemorado(numero){
     return new Promise(function (resolve, reject){
@@ -296,4 +304,6 @@ function calculoDemorado(numero){
 calculoDemorado(10).then( (response) => {
     console.log("Resposta: ", response)
 })
+.catch((reject) => console.log(reject))
+
 
